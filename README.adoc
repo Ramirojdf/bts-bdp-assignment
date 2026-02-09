@@ -1,0 +1,65 @@
+= Big Data Infrastructure - Assignment
+:author: Miquel Farre <miquel.farre@bts.tech>
+
+We'll use this repository through our course.
+Starting it from a small application to have something
+bigger and more complex.
+
+You'll learn to develop an API, the common interface between software systems,
+package it and deploy it to the cloud (AWS) and finally how we can scale
+and better automate the data-intensive parts.
+
+== Installation
+
+* Use python 3.11 or 3.12
+* Create a virtual environment and install dependencies:
+
+```shell
+python -m venv .venv
+
+# macOS / Linux
+source .venv/bin/activate
+
+# Windows
+.venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+If you need to add any package, just add it to `requirements.txt`
+and run `pip install -r requirements.txt` again.
+
+TIP: Try not to use Windows and use WSL2 instead: a linux "layer" for windows.
+https://www.youtube.com/watch?v=28Ei63qtquQ[Windows 11] https://www.youtube.com/watch?v=_fntjriRe48[windows 10]
+
+== Running the app
+
+```shell
+# Start the API (development mode with auto-reload)
+uvicorn bdi_api.app:app --reload --host 0.0.0.0 --port 8080
+
+# Run the tests
+pytest
+```
+
+Then visit http://localhost:8080/docs to see the API documentation.
+
+== How will the exercises be evaluated?
+
+The exercises are a bit different so evaluation will be specified in each `bdi_api/sX/README.adoc` file.
+
+
+== Data
+
+Use the `data/` folder to store your data.
+It will not be uploaded to any git repository.
+
+
+== Resources
+
+* link:docs/api.adoc[What is an API]
+* link:docs/env_variables.adoc[Environment variables]
+* link:docs/pydantic.adoc[Pydantic for settings]
+* https://fastapi.tiangolo.com/[FastAPI documentation]
+* https://realpython.com/python-testing/[Getting Started with Testing in Python]

@@ -1,0 +1,48 @@
+= S4 Exercises
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+. Check `boto3` is installed: `pip install boto3` (already in requirements.txt)
+. Create a bucket in your AWS account starting with `bdi-aircraft`
+. Re-implement the `/aircraft/download` and `/aircraft/prepare` endpoints inside this folder to store the raw files inside s3.
+. Download and process at least a 1000 files
+
+
+NOTE: You will be able to call the updated endpoints with the `/api/s4` prefix.
+
+TIP: Call the api like `BDI_S3_BUCKET=yourbucket uvicorn bdi_api.app:app --host 0.0.0.0 --port 8080`
+
+=== Getting the latest code
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork[How to update your repository (fork) with the latest changes]
+
+NOTE: If there are merge conflicts, please let me and the teaching assistants know (via email) and we'll solve it together.
+
+== Evaluation
+
+I'll use my own bucket to test your code.
+It's important you use the `Settings().s3_bucket` variable in your code
+and place the files in the correct path
+
+1. The application does not compile/start -> 0 automatically
+2. Virtual environments are not used -> 0 automatically
+3. I'll run a series of validation tests against your application (4 points)
+ * % of passed tests
+4. Code quality and best practices (2 points)
+ * Code linting with `ruff`
+ * Tests you have implemented inside `tests/s4/` (coverage and completeness)
+ * Screenshot of your s3 bucket directory with the 1000 raw files
+ * Having failing tests results in a 0 for this section
+5. Questions about the practice (4 points)
+ * You will be asked questions about how you implemented your solution
+ * You must be able to explain your code and the decisions you made
+
+WARNING: Don't hardcode any AWS credentials or passwords in your code. Authenticate via the AWS cli or using environment variables.
+
+== Links of interest
+
+* https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#s3[Boto3 s3 docs]

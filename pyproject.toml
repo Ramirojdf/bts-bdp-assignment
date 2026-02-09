@@ -1,0 +1,45 @@
+[project]
+name = "bdi-api"
+version = "0.0.1"
+description = "Exercises for the BTS Big Data Infrastructure course"
+readme = "README.adoc"
+authors = [
+    {name = "Miquel Farre", email = "miquel.farre@bts.tech"},
+]
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
+asyncio_mode = "auto"
+minversion = "7.0"
+addopts = "-p no:warnings"
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "C",
+    "B",
+    "UP",
+]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

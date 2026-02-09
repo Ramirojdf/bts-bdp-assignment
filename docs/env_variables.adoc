@@ -1,0 +1,72 @@
+= Environment variables
+
+An environment variable is a dynamic-named value that can affect the way running processes behave on a computer. In simple terms, it's a variable whose value is set outside the program, usually in the operating system's environment. These variables are part of the environment in which a process runs and can be accessed by any program running under that environment.
+
+Environment variables are used for various purposes, including:
+
+* *Configuration*: They can be used to configure how software behaves. For example, setting the PATH variable in Unix-like systems specifies directories in which executable programs are located.
+
+* *Customization*: Users can set environment variables to customize their computing environment according to their preferences. This could include setting variables for default text editors, language preferences, or file system paths.
+
+* *Inter-process Communication*: Environment variables can be used by one process to communicate information to another process. For instance, a parent process might pass configuration information to a child process through environment variables.
+
+* *Security*: They can also play a role in security by controlling access to certain resources or features based on the value of specific variables.
+
+* *Debugging and Development*: Developers often use environment variables to configure development and debugging environments. They can control logging levels, debugging options, or enable/disable certain features during development.
+
+Overall, environment variables provide a flexible and standardized way to configure and control the behavior of software and the operating system environment as a whole. They are an essential aspect of system configuration and software development.
+
+== Setting Up Environment Variables in Command Line
+
+=== Windows
+
+1. Open Command Prompt:
+   - Press `Win + R` to open the Run dialog.
+   - Type `cmd` and press Enter.
+
+2. View Current Environment Variables:
+   - To view all current environment variables, type `set` and press Enter.
+
+3. Set New Environment Variable:
+- To set a new environment variable, type: `setx VARIABLE_NAME "variable_value"`
+Replace `VARIABLE_NAME` with the name of your variable and `"variable_value"` with its value.
+
+4. Verify the Setting:
+   - Close and reopen Command Prompt to ensure the changes take effect.
+   - To verify, type `echo %VARIABLE_NAME%`. It should display the value you set.
+
+https://www.shellhacks.com/windows-set-environment-variable-cmd-powershell/[Extra info]
+
+=== macOS
+
+1. Open Terminal:
+   - Use Spotlight (press `Cmd + Space` and type "Terminal") or go to `Applications -> Utilities -> Terminal`.
+
+2. View Current Environment Variables:
+   - To view all current environment variables, type `printenv` and press Enter.
+
+3. Set New Environment Variable:
+   - To set a new environment variable for the current session, type: `export VARIABLE_NAME="variable_value"`
+Replace `VARIABLE_NAME` with the name of your variable and `"variable_value"` with its value.
+
+4. Permanently Set Environment Variables (Optional):
+   - To make the variable persist across sessions, add the export command to `~/.bash_profile` or `~/.bashrc` file.
+
+=== Linux
+
+1. Open Terminal:
+   - You can open the terminal using the shortcut `Ctrl + Alt + T` or search for it in your applications menu.
+
+2. View Current Environment Variables:
+   - To view all current environment variables, type `printenv` and press Enter.
+
+3. Set New Environment Variable:
+   - To set a new environment variable for the current session, type: `export VARIABLE_NAME="variable_value"`
+Replace `VARIABLE_NAME` with the name of your variable and `"variable_value"` with its value.
+
+4. Permanently Set Environment Variables (Optional):
+   - To make the variable persist across sessions, add the export command to `~/.bash_profile` or `~/.bashrc` file.
+
+
+
+NOTE: Generated using LLMs

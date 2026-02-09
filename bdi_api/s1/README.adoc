@@ -1,0 +1,51 @@
+= S1 Exercises
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+1. Download and configure https://github.com/miquelfarre/bts-bdp-assignment[the app] to run on your machine
+2. Familiarize yourself with https://fastapi.tiangolo.com/[`FastAPI`] and the example endpoints and tests
+3. Download a couple of files of our https://samples.adsbexchange.com/readsb-hist/2023/11/01/[flights data] and understand it using its https://www.adsbexchange.com/version-2-api-wip/[documentation]
+4. Build the exercises found in the files from this folder
+
+
+TIP: Explore how to write clean and concise code in python. Best practices and testing your code is something that will help you understand what you wrote 6 months ago way.
+
+
+== How to deliver the solution
+
+1. Commit and push your code to github.
+2. Go to your GitHub's commit history, take a screenshot and upload it to campus
+
+I'll use the latest commit shown in the snapshot to evaluate your code.
+
+== How will the exercises be evaluated?
+
+1. The application does not compile/start -> 0 automatically
+2. Virtual environments are not used -> 0 automatically
+3. I'll run a series of data validation tests against your application (4 points)
+ * % of passed tests
+4. Code quality and best practices (2 points)
+ * Code linting with `ruff`
+ * Tests you have implemented (coverage and completeness)
+ * Having failing tests results in a 0 for this section
+5. Questions about the practice (4 points)
+ * You will be asked questions about how you implemented your solution
+ * You must be able to explain your code and the decisions you made
+
+TIP: to ensure you have added all the needed libraries,
+clone your code in another folder and run `pip install -r requirements.txt` and then run the tests/app.
+
+== Links of interest
+
+TIP: Try not to use Windows and use WSL2 instead: a linux "layer" for windows.
+https://www.youtube.com/watch?v=28Ei63qtquQ[Windows 11] https://www.youtube.com/watch?v=_fntjriRe48[windows 10]
+
+* https://www.youtube.com/watch?v=hwP7WQkmECE[Git Explained in 100 Seconds]
+* https://fastapi.tiangolo.com/tutorial/[FastAPI Tutorial]
+
+WARNING: Don't assume the data is clean and pristine. You might face some surprises.

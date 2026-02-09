@@ -1,0 +1,35 @@
+.idea
+.ipynb_checkpoints
+.mypy_cache
+.vscode
+__pycache__
+.pytest_cache
+htmlcov
+dist
+site
+.coverage
+coverage.xml
+.hypothesis
+.netlify
+.mypy
+test.db
+log.txt
+env3.*
+env
+venv
+.venv
+.ruff_cache
+
+# vim temporary files
+*~
+.*.sw?
+.cache
+
+# macOS
+.DS_Store
+
+/data/**
+!/data/**/.gitkeep
+
+.report.json
+.pytest.json

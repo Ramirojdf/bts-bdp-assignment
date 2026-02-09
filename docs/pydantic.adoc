@@ -1,0 +1,70 @@
+= Pydantic library
+
+https://docs.pydantic.dev/latest/[Pydantic] is a data validation and settings management library for Python.
+It's designed to make it easy to define and validate data schemas,
+including configuration settings, by using Python type annotations.
+
+TIP: Read always the https://docs.pydantic.dev/latest/[official documentation]
+
+== Creating Configuration Settings with Pydantic
+NOTE: This is just an example
+
+1. **Defining a Configuration Model:**
+
+To define configuration settings using Pydantic, you create a data model class that inherits from the `BaseModel` class provided by Pydantic. You define attributes for each configuration setting using Python type annotations.
+
+For example:
+
+[source,python]
+----
+from pydantic import BaseModel
+
+class AppConfig(BaseModel):
+    database_url: str
+    max_connections: int = 10
+    debug: bool = False
+----
+
+In this example, `AppConfig` is a Pydantic model representing configuration settings. It has three attributes: `database_url` (a string), `max_connections` (an integer with a default value of 10), and `debug` (a boolean with a default value of `False`).
+
+2. **Creating an Instance of the Configuration Model:**
+
+Once you've defined the configuration model, you can create an instance of it by passing in the configuration values as keyword arguments:
+
+[source,python]
+----
+config = AppConfig(database_url="mysql://user:password@localhost:3306/mydatabase", max_connections=20, debug=True)
+----
+
+3. **Accessing Configuration Values:**
+
+You can access individual configuration values as attributes of the configuration instance:
+
+[source,python]
+----
+print(config.database_url)
+print(config.max_connections)
+print(config.debug)
+----
+
+== Validating Configuration Settings
+
+Pydantic automatically validates the configuration values based on the data types defined in the model. If you try to assign a value of the wrong type, Pydantic will raise a `ValidationError`.
+
+[source,python]
+----
+# This will raise a ValidationError
+config = AppConfig(database_url=123)
+----
+
+== Conclusion
+
+Pydantic provides a convenient and Pythonic way to define and manage configuration settings in your Python applications. By using Python type annotations, Pydantic makes it easy to create configuration models with built-in validation, ensuring that your application's configuration is always correct and consistent.
+
+Pydantic is not only used in configuration but also is used in other libraries
+like `FastAPI` with the purposes of validating the reciving data and specifying
+the schema (contract).
+
+
+
+NOTE: Generated using LLMs
