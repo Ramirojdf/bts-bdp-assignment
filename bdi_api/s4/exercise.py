@@ -5,6 +5,15 @@ from fastapi.params import Query
 
 from bdi_api.settings import Settings
 
+import boto3
+
+import time
+import requests
+import json
+import glob
+import os
+
+
 settings = Settings()
 
 s4 = APIRouter(
@@ -24,10 +33,10 @@ def download_data(
         Query(
             ...,
             description="""
-    Limits the number of files to download.
-    You must always start from the first the page returns and
-    go in ascending order in order to correctly obtain the results.
-    I'll test with increasing number of files starting from 100.""",
+                Limits the number of files to download.
+                You must always start from the first the page returns and
+                go in ascending order in order to correctly obtain the results.
+                I'll test with increasing number of files starting from 100.""",
         ),
     ] = 100,
 ) -> str:
@@ -41,15 +50,50 @@ def download_data(
     s3_prefix_path = "raw/day=20231101/"
     # TODO
 
-    return "OK"
+
+    downloaded = 0
+    counter = 0
+    suffix_url = "Z.json.gz"
+
+    s3_client = boto3.client("s3")
 
 
-@s4.post("/aircraft/prepare")
-def prepare_data() -> str:
-    """Obtain the data from AWS s3 and store it in the local `prepared` directory
-    as done in s1.
+    while downloaded < file_limit:
+        
+        time.sleep(2)
+        
+        try:
 
-    All the `/api/s1/aircraft/` endpoints should work as usual
-    """
-    # TODO
+            response = requests.get(f"{base_url}{counter:06d}{suffix_url}")
+
+            if response.status_code == 200:
+                
+                data = response.json() 
+                print(f"File {counter:06d} parsed successfully.")
+                
+                # Uploading to S3
+                s3_key = f"{s3_prefix_path}{counter:06d}.json"
+                s3_client.put_object(
+                    Bucket=s3_bucket,
+                    Key=s3_key,
+                    Body=json.dumps(data),
+                    ContentType="application/json"
+                )
+
+                print(f"files uploaded to s3://{s3_bucket}/{s3_key}")
+                downloaded += 1
+
+            else:
+
+                print(f"File {counter:06d} not found (Status {response.status_code})")
+        
+        except Exception as e:
+        
+            print(f"Error processing {counter:06d}: {e}")
+            break;
+        
+        counter += 5
+
+
+
     return "OK"
