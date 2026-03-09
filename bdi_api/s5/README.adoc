@@ -1,0 +1,68 @@
+= Session 5: SQL & Relational Databases
+:toc:
+
+== Overview
+
+In this assignment you will integrate the HR database created during class with a FastAPI application.
+
+You must implement all the endpoints defined in `exercise.py` so that the evaluation tests in `tests/s5/test_s5.py` pass.
+
+== Prerequisites
+
+* PostgreSQL running (via Docker or AWS RDS)
+* Python dependencies installed: `pip install -r requirements.txt`
+
+== Database Configuration
+
+Set the database URL via environment variable:
+
+[source,bash]
+----
+export BDI_DB_URL="postgresql://postgres:postgres@localhost:5432/hr_database"
+----
+
+For SQLite (local, no Docker needed):
+
+[source,bash]
+----
+export BDI_DB_URL="sqlite:///hr_database.db"
+----
+
+== Running
+
+[source,bash]
+----
+uvicorn bdi_api.app:app --reload --port 8080
+----
+
+Visit http://localhost:8080/docs to see and test the API.
+
+== Evaluation
+
+[source,bash]
+----
+pytest tests/s5/ -v
+----
+
+All tests in `TestItCanBeEvaluated` must pass. Do NOT modify those tests.
+
+== Endpoints
+
+|===
+|Method |Path |Description
+
+|POST |`/api/s5/db/init` |Create HR database tables
+|POST |`/api/s5/db/seed` |Populate with sample data
+|GET |`/api/s5/departments/` |List all departments
+|GET |`/api/s5/employees/` |List employees (paginated)
+|GET |`/api/s5/departments/{dept_id}/employees` |Employees in a department
+|GET |`/api/s5/departments/{dept_id}/stats` |Department KPIs
+|GET |`/api/s5/employees/{emp_id}/salary-history` |Salary history
+|===
+
+== Hints
+
+* Use SQLAlchemy for ORM-based access or `psycopg2` for raw SQL
+* The `hr_schema.sql` and `hr_seed_data.sql` files in `bts-bdp-exercises/s5/` contain the SQL you need
+* For pagination, use SQL `OFFSET` and `LIMIT`
+* For stats, use `AVG()`, `COUNT()`, and JOINs

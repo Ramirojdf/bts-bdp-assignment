@@ -21,6 +21,14 @@ class Settings(BaseSettings):
         default="bdi-test",
         description="Call the api like `BDI_S3_BUCKET=yourbucket uvicorn ...`",
     )
+    db_url: str = Field(
+        default="sqlite:///hr_database.db",
+        description="Database URL. Set BDI_DB_URL for PostgreSQL, e.g. postgresql://postgres:postgres@localhost:5432/hr_database",
+    )
+    mongo_url: str = Field(
+        default="mongodb://localhost:27017",
+        description="MongoDB connection URL. Set BDI_MONGO_URL for remote, e.g. mongodb+srv://user:pass@cluster.mongodb.net",
+    )
 
     model_config = SettingsConfigDict(env_prefix="bdi_")
 

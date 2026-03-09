@@ -2,6 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 
+import uvicorn
 from fastapi import FastAPI
 from starlette import status
 from starlette.responses import JSONResponse
@@ -10,7 +11,8 @@ import bdi_api
 from bdi_api.examples import v0_router
 from bdi_api.s1.exercise import s1
 from bdi_api.s4.exercise import s4
-
+from bdi_api.s5.exercise import s5
+from bdi_api.s6.exercise import s6
 
 logger = logging.getLogger("uvicorn.error")
 
@@ -49,6 +51,8 @@ app = FastAPI(
 app.include_router(v0_router)
 app.include_router(s1)
 app.include_router(s4)
+app.include_router(s5)
+app.include_router(s6)
 
 
 @app.get("/health", status_code=200)
@@ -65,8 +69,6 @@ async def get_version() -> dict:
 
 
 def main() -> None:
-    import uvicorn
-
     uvicorn.run(app, host="0.0.0.0", port=8080, proxy_headers=True, access_log=False)
 
 
